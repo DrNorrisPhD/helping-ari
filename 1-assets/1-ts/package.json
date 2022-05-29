@@ -1,0 +1,28 @@
+{
+  "name": "helping-ari",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "author": {
+    "name": "Alex Norris"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "p5": "^1.4.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.7.2"
+  },
+  "files": [
+    "./bin/*",
+    "./lib/*"
+  ],
+  "typings": "./lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -c tslint.json src/**/*.ts",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/p5": "^1.4.2",
+    "parcel": "^2.6.0"
+  }
+}
