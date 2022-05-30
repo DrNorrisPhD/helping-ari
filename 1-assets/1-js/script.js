@@ -1,5 +1,6 @@
 let currrentPage = null;
 let currentSection = 0;
+let currentParagraph = null;
 let color = (0, 0, 0)
 function setup() {
     const canvas = createCanvas(600, 600);
@@ -12,8 +13,13 @@ function setup() {
         switch (isNumber) {
             case true:
                 if (number <= 3) {
-                    currentPage = Number(event.key);
-                    console.log(currentPage);
+                    if (currentSection > 1) {
+                        currentPage = Number(event.key);
+                        console.log(currentPage);
+                    } else {
+                        currentSection = Number(event.key);
+                        console.log(currentSection);
+                    }
                     break;
                 }
             default:
@@ -23,10 +29,69 @@ function setup() {
 }
 function draw() {
     fill(0, 0, 0);
-    const output = ("This is page " + currrentPage + " of section " + currentSection);
+    const output = generatePage();
     text(output, 0, height / 2);
 }
 
-function changePage(key) {
-
+function generatePage() {
+    let output;
+    switch (currentSection) {
+        case 0:
+            output = "";
+            break;
+        case 1:
+            output = "";
+            break;
+        case 2:
+            switch (currentPage) {
+                case 1:
+                    output = "";
+                    break;
+                case 2:
+                    output = "";
+                    break;
+                case 3:
+                    output = "";
+                    break;
+                default:
+                    alert("error, invalid page");
+                    break;
+            }
+            break;
+        case 3:
+            switch (currentPage) {
+                case 1:
+                    output = "";
+                    break;
+                case 2:
+                    output = "";
+                    break;
+                case 3:
+                    output = "";
+                    break;
+                default:
+                    alert("error, invalid page");
+                    break;
+            }
+            break;
+        case 4:
+            switch (currentPage) {
+                case 1:
+                    output = "";
+                    break;
+                case 2:
+                    output = "";
+                    break;
+                case 3:
+                    output = "";
+                    break;
+                default:
+                    alert("error, invalid page");
+                    break;
+            }
+            break;
+        default:
+            alert("error, invalid section");
+            break;
+    }
 }
