@@ -1,10 +1,8 @@
 let currrentPage = null;
 let currentSection = 0;
 let currentParagraph = null;
-let color = (0, 0, 0)
 function setup() {
     const canvas = createCanvas(600, 600);
-    canvas.style('display', 'block');
     textSize(29);
     background(255, 255, 255);
     document.addEventListener('keypress', event => {
