@@ -1,29 +1,31 @@
-let page = 0;
-let currentPage = 0;
-let color = (0,0,0);
-let click = true;
+let currrentPage = null;
+let color = (0,0,0)
 function setup() {
-    const canvas = createCanvas(100, 100);
-    canvas.style('position', 'absolute');
+    const canvas = createCanvas(600, 600);
+    canvas.style('display', 'block');
     textSize(29);
     background(color);
-    goFullScreen();
+    document.addEventListener('keypress', event => {
+        switch (!isNaN((Number(event.key)))) {
+            case true:
+                currentPage = Number(event.key);
+                console.log(currentPage);
+                break;
+            default:
+                alert("Not a page");
+        }
+    });
 }
-
 function draw() {
-    text("hello world!", width/2, height/2);
-    fill(0);
+    text("hello world!", width / 2, height / 2);
+    fill(0,0,0);
+    console.log();
 }
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}
+// function windowResized() {
+//     resizeCanvas(windowWidth, windowHeight);
+// }
 
-function goFullScreen(){
-    if(canvas.requestFullScreen)
-        canvas.requestFullScreen();
-    else if(canvas.webkitRequestFullScreen)
-        canvas.webkitRequestFullScreen();
-    else if(canvas.mozRequestFullScreen)
-        canvas.mozRequestFullScreen();
+function changePage(key) {
+
 }
