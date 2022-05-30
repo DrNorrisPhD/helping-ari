@@ -17,7 +17,7 @@ function setup() {
                         currentPage = Number(event.key);
                         console.log(currentPage);
                     } else {
-                        currentSection = Number(event.key);
+                        currentSection = 1;
                         console.log(currentSection);
                     }
                     break;
@@ -32,7 +32,7 @@ function draw() {
     const output = generatePage();
     text(output, 0, height / 2);
 }
-
+//write the story in the empty quotes
 function generatePage() {
     let output;
     switch (currentSection) {
@@ -43,55 +43,36 @@ function generatePage() {
             output = "";
             break;
         case 2:
-            switch (currentPage) {
-                case 1:
-                    output = "";
-                    break;
-                case 2:
-                    output = "";
-                    break;
-                case 3:
-                    output = "";
-                    break;
-                default:
-                    alert("error, invalid page");
-                    break;
-            }
+            output = currentPageSwitch("","","");
             break;
         case 3:
-            switch (currentPage) {
-                case 1:
-                    output = "";
-                    break;
-                case 2:
-                    output = "";
-                    break;
-                case 3:
-                    output = "";
-                    break;
-                default:
-                    alert("error, invalid page");
-                    break;
-            }
+            output = currentPageSwitch("","","");
             break;
         case 4:
-            switch (currentPage) {
-                case 1:
-                    output = "";
-                    break;
-                case 2:
-                    output = "";
-                    break;
-                case 3:
-                    output = "";
-                    break;
-                default:
-                    alert("error, invalid page");
-                    break;
-            }
+            output = currentPageSwitch("","","");
             break;
         default:
             alert("error, invalid section");
             break;
     }
+    return output;
+}
+
+function currentPageSwitch(output1, output2, output3) {
+    let output;
+    switch (currentPage) {
+        case 1:
+            output = output1;
+            break;
+        case 2:
+            output = output2;
+            break;
+        case 3:
+            output = output3;
+            break;
+        default:
+            alert("error, invalid page");
+            break;
+    }
+    return output;
 }
