@@ -1,53 +1,36 @@
-let currrentPage = null;
-let currentSection = 0;
-let currentParagraph = null;
+let currentPage = null;
+let currentSection = -1;
+
 function setup() {
     const canvas = createCanvas(600, 600);
     textSize(29);
     background(255, 255, 255);
-    document.addEventListener('keypress', event => {
-        const number = Number(event.key);
-        const isNumber = !isNaN(number);
-        switch (isNumber) {
-            case true:
-                if (number <= 3) {
-                    if (currentSection > 1) {
-                        currentPage = Number(event.key);
-                        console.log(currentPage);
-                    } else {
-                        currentSection = 1;
-                        console.log(currentSection);
-                    }
-                    break;
-                }
-            default:
-                alert("Not a page");
-        }
-    });
+    document.addEventListener('keypress', keys);
 }
+
 function draw() {
-    fill(0, 0, 0);
-    const output = generatePage();
+    background(223, 223, 223);
+    const output = generatePage(currentSection, currentPage);
     text(output, 0, height / 2);
 }
-//write the story in the empty quotes
-function generatePage() {
+
+function generatePage(section, page) {
     let output;
-    switch (currentSection) {
+    switch (section) {
+        case -1:
+            output = "Intro";
+            break;
         case 0:
-            output = "";
+            output = "Second Thing";
             break;
         case 1:
-            output = "";
+            output = generatePageHelper("a", "b", "c", "d", page);
             break;
         case 2:
-            output = currentPageSwitch("","","");
+            output = generatePageHelper("e", "f", "g", "h", page);
             break;
         case 3:
-            output = currentPageSwitch("","","");
-            break;
-        case 4:
-            output = currentPageSwitch("","","");
+            output = generatePageHelper("i", "j", "k", "l", page);
             break;
         default:
             alert("error, invalid section");
@@ -56,9 +39,12 @@ function generatePage() {
     return output;
 }
 
-function currentPageSwitch(output1, output2, output3) {
+function generatePageHelper(output0, output1, output2, output3, page) {
     let output;
     switch (currentPage) {
+        case null:
+            output = output0;
+            break;
         case 1:
             output = output1;
             break;
@@ -73,4 +59,26 @@ function currentPageSwitch(output1, output2, output3) {
             break;
     }
     return output;
+}
+
+function keys(event) {
+    const number = Number(event.key);
+    const isNumber = !isNaN(number);
+    switch (isNumber) {
+        case true:
+            if (number <= 3) {
+                if (currentSection === 0) {
+                    currentSection = Number(event.key);
+                } else if (currentSection > 0) {
+                    currentPage = Number(event.key);
+                } else {
+                    currentSection += 1;
+                }
+                break;
+            }
+        default:
+            alert("Not a page");
+    }
+    if (currentPage == null) return;
+    this.removeEventListener('keypress', keys);
 }
