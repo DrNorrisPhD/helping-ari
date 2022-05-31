@@ -10,13 +10,13 @@ function setup() {
 
 function draw() {
     background(223, 223, 223);
-    const output = generatePage(currentSection, currentPage);
+    const output = generatePage();
     text(output, 0, height / 2);
 }
 
-function generatePage(section, page) {
+function generatePage() {
     let output;
-    switch (section) {
+    switch (currentSection) {
         case -1:
             output = "Intro";
             break;
@@ -24,13 +24,13 @@ function generatePage(section, page) {
             output = "Second Thing";
             break;
         case 1:
-            output = generatePageHelper("a", "b", "c", "d", page);
+            output = generatePageHelper("a", "b", "c", "d");
             break;
         case 2:
-            output = generatePageHelper("e", "f", "g", "h", page);
+            output = generatePageHelper("e", "f", "g", "h");
             break;
         case 3:
-            output = generatePageHelper("i", "j", "k", "l", page);
+            output = generatePageHelper("i", "j", "k", "l");
             break;
         default:
             alert("error, invalid section");
@@ -39,7 +39,7 @@ function generatePage(section, page) {
     return output;
 }
 
-function generatePageHelper(output0, output1, output2, output3, page) {
+function generatePageHelper(output0, output1, output2, output3) {
     let output;
     switch (currentPage) {
         case null:
