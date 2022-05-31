@@ -1,5 +1,6 @@
 let currentPage = null;
 let currentSection = -1;
+let currentParagraph = null;
 
 function setup() {
     const canvas = createCanvas(600, 600);
@@ -61,21 +62,42 @@ function generatePageHelper(output0, output1, output2, output3) {
     return output;
 }
 
+function generatePageHelperHelper(output0, output1, output2, output3) {
+    let output;
+    switch (currentParagraph) {
+        case null:
+            output = output0;
+            break;
+        case 1:
+            output = output1;
+            break;
+        case 2:
+            output = output2;
+            break;
+        case 3:
+            output = output3;
+            break;
+        default:
+            alert("error, invalid page");
+            break;
+    }
+    return output;
+}
+
 function keys(event) {
     const number = Number(event.key);
     const isNumber = !isNaN(number);
     switch (isNumber) {
         case true:
-            if (number <= 3) {
-                if (currentSection === 0) {
-                    currentSection = Number(event.key);
-                } else if (currentSection > 0) {
-                    currentPage = Number(event.key);
-                } else {
-                    currentSection += 1;
-                }
-                break;
+            if (number > 3) break;
+            if (currentSection === 0) {
+                currentSection = Number(event.key);
+            } else if (currentSection > 0) {
+                currentPage = Number(event.key);
+            } else {
+                currentSection += 1;
             }
+            break;
         default:
             alert("Not a page");
     }
